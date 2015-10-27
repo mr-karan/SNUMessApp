@@ -1,0 +1,6 @@
+- [ ] csvcut xlsx to csv
+- [ ] custom bld values new dict ; sep by days
+- [ ] append values
+- [ ] create json
+- [ ] write it to a file
+- [ ] upload
