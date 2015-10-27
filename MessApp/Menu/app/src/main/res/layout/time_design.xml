@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".time">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Breakfast"
+        android:id="@+id/breakfast"
+        android:layout_below="@+id/label_refresh"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lunch"
+        android:id="@+id/lunch"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/breakfast"
+        android:layout_alignStart="@+id/breakfast" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dinner"
+        android:id="@+id/dinner"
+
+        android:layout_marginBottom="125dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/lunch"
+        android:layout_alignStart="@+id/lunch" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Refresh"
+        android:id="@+id/ref"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/breakfast"
+        android:layout_toEndOf="@+id/breakfast" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Refresh for this week"
+        android:id="@+id/label_refresh"
+        android:layout_marginTop="7dp"
+        android:layout_below="@+id/ref"
+        android:layout_alignRight="@+id/ref"
+        android:layout_alignEnd="@+id/ref" />
+</RelativeLayout>
