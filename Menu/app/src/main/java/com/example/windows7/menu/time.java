@@ -1,7 +1,6 @@
 package com.example.windows7.menu;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,9 +10,12 @@ import android.widget.Button;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Calendar;
 import org.apache.http.HttpResponse;
@@ -26,52 +28,47 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONArray;
-
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.List;
 
 
 public class time extends Activity{
 
-    String kaja;
-    Button b1,b2,b3,refresh;
+    Object week[] =new Object[7];
+    Button b1,b2,b3,refresh1,refresh2;
     enum days{Mon,Tue,Wed,Thu,Fri,Sat,Sun}
-
+    ArrayList al=new ArrayList();
+    Bundle bundle = new Bundle();
+    File cache;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.time_design);
+
         b1=(Button)findViewById(R.id.breakfast);
         b2=(Button)findViewById(R.id.lunch);
         b3=(Button)findViewById(R.id.dinner);
-        refresh=(Button)findViewById(R.id.ref);
-        refresh.setOnClickListener(new View.OnClickListener() {
+        refresh1=(Button)findViewById(R.id.ref1);
+        refresh2=(Button)findViewById(R.id.ref2);
+        refresh1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(isConnected()){
-                    new HttpAsyncTask().execute("https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/MessJSON/dh1.json");
+
+                    new HttpAsyncTask().execute("https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/MessJSON/DH1.json");
+
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "You are not connected to internet .Please try again !!",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        refresh2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isConnected()){
+
+                    new HttpAsyncTask().execute("https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/MessJSON/DH2.json");
 
                 }
                 else
@@ -86,13 +83,99 @@ public class time extends Activity{
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(time.this, breakfast.class);
+                Calendar rightNow = Calendar.getInstance();
+                if (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
+                    myIntent.putExtra("array",  week[4].toString());
+                    startActivity(myIntent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+                    myIntent.putExtra("array",  week[5].toString());
+                    startActivity(myIntent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+                    myIntent.putExtra("array",  week[6].toString());
+                    startActivity(myIntent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+
+                    myIntent.putExtra("array",week[0].toString());
+                    startActivity(myIntent);
+
+                    //do some stuff here
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
+                    //do some stuff here
+                    myIntent.putExtra("array", week[1].toString());
+                    startActivity(myIntent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
+                    myIntent.putExtra("array", week[2].toString());
+                    startActivity(myIntent);
+
+                    //do some stuff here
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
+                {
+                    myIntent.putExtra("array", week[3].toString());
+                    //do some stuff here
+                    startActivity(myIntent);
+                }
+
 
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent myIntent = new Intent(time.this, lunch.class);
+                Calendar rightNow = Calendar.getInstance();
+                if (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
+                    myIntent.putExtra("array",  week[4].toString());
+                    startActivity(myIntent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+                    myIntent.putExtra("array",  week[5].toString());
+                    startActivity(myIntent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+                    myIntent.putExtra("array",  week[6].toString());
+                    startActivity(myIntent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+
+                    myIntent.putExtra("array",week[0].toString());
+                    startActivity(myIntent);
+
+                    //do some stuff here
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
+                    //do some stuff here
+                    myIntent.putExtra("array", week[1].toString());
+                    startActivity(myIntent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
+                    myIntent.putExtra("array", week[2].toString());
+                    startActivity(myIntent);
+
+                    //do some stuff here
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
+                {
+                    myIntent.putExtra("array", week[3].toString());
+                    startActivity(myIntent);
+                    //do some stuff here
+                }
+
+
 
             }
         });
@@ -100,6 +183,48 @@ public class time extends Activity{
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(time.this, dinner.class);
+                Calendar rightNow = Calendar.getInstance();
+
+                if (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
+                    myIntent.putExtra("array",  week[4].toString());
+                    startActivity(myIntent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+                    myIntent.putExtra("array",  week[5].toString());
+
+                    startActivity(myIntent);
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+                    myIntent.putExtra("array",  week[6].toString());
+                    startActivity(myIntent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+
+                    myIntent.putExtra("array",week[0].toString());
+                    startActivity(myIntent);
+
+                    //do some stuff here
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
+                    //do some stuff here
+                    myIntent.putExtra("array", week[1].toString());
+                    startActivity(myIntent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
+                    myIntent.putExtra("array", week[2].toString());
+                    startActivity(myIntent);
+
+                    //do some stuff here
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
+                {
+                    myIntent.putExtra("array", week[3].toString());
+                    startActivity(myIntent);
+                    //do some stuff here
+                }
 
             }
         });
@@ -182,12 +307,29 @@ public class time extends Activity{
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
+
             Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
             try {
                 JSONObject json = new JSONObject(result);
+                int ct=0;
+               // System.out.println((json.getJSONArray("Mon")).toString());
                 for(days day:days.values()){
-                    System.out.println(json.getJSONObject(String.valueOf(day)));
+                    JSONObject j=json.getJSONObject(String.valueOf(day));
+                    Iterator x = j.keys();
+                    System.out.println(j);
+                    JSONArray jsonArray = new JSONArray();
+
+                    while (x.hasNext()){
+                        String key = (String) x.next();
+                        jsonArray.put(j.get(key));
+                    }
+                    week[ct++]=jsonArray;
+                    System.out.print(jsonArray);
+
                 }
+
+
+
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

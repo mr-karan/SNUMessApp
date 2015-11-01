@@ -1,41 +1,26 @@
 package com.example.windows7.menu;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import java.util.Calendar;
+import android.widget.TextView;
 
-public class breakfast extends ActionBarActivity {
+public class breakfast extends Activity {
 
+    TextView br1,br2,br3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_breakfast);
-        Calendar rightNow = Calendar.getInstance();
-        if (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
-            //do some stuff here
-        }
-        else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
-            //do some stuff here
-        }
-        else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
-            //do some stuff here
-        }
-        else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
-            //do some stuff here
-        }
-        else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
-            //do some stuff here
-        }
-        else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
-            //do some stuff here
-        }
-        else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
-        {
-            //do some stuff here
-        }
-
+        br1=(TextView)findViewById(R.id.br1);
+        br2=(TextView)findViewById(R.id.br2);
+        br3=(TextView)findViewById(R.id.br3);
+        Bundle b = getIntent().getExtras();
+        String[] array=b.getString("array").split(",");
+        br1.setText(array[0].replaceAll("[^a-zA-Z]","")+"  "+array[1].replaceAll("[^a-zA-Z]",""));
+        br2.setText(array[2].replaceAll("[^a-zA-Z]",""));
+        br3.setText(array[3].replaceAll("[^a-zA-Z]",""));
 
     }
 
