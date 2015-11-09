@@ -1,8 +1,8 @@
 # SNUMessApp
 Android App for SNU Weekly Mess Menu
 
-![Main Menu](https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/screenshots/Screenshot_2015-11-09-12-43-40-264.jpeg)
+![Main Menu](https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/screenshots/main.png)
 
-![DH 1](https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/screenshots/Screenshot_2015-11-09-12-43-47-405.jpeg)
+![DH 2](https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/screenshots/DH2.png)
 
-![DH2](https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/screenshots/DH2.jpeg)
+![DH 1](https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/screenshots/DH1.png)
