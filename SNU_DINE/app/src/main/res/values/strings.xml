@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Food</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_dining_hall_one">Dining Hall One</string>
+    <string name="title_activity_dining_hall_two">Dining Hall Two</string>
+
+
+</resources>

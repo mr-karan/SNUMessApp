@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"  tools:context=".MainActivity"
+    android:id="@+id/one">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:id="@+id/view">
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SNU Mess"
+        android:id="@+id/menu"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/view"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DH1"
+        android:id="@+id/dh1"
+        android:layout_below="@+id/menu"
+        android:layout_marginTop="84dp"
+        android:layout_alignRight="@+id/menu"
+        android:layout_alignEnd="@+id/menu"
+        android:layout_alignLeft="@+id/menu"
+        android:layout_alignStart="@+id/menu" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DH2"
+        android:id="@+id/dh2"
+        android:layout_marginTop="70dp"
+        android:layout_below="@+id/dh1"
+        android:layout_alignRight="@+id/dh1"
+        android:layout_alignEnd="@+id/dh1"
+        android:layout_alignLeft="@+id/dh1"
+        android:layout_alignStart="@+id/dh1" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Developers"
+        android:id="@+id/about"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/dh2"
+        android:layout_toStartOf="@+id/dh2"
+        android:layout_marginBottom="54dp" />
+
+
+</RelativeLayout>
+
+<!--What should I be concentrating more in ?? Design or the working ??
+First look at the working of the program, then you can work on design of the application-->
