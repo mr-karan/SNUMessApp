@@ -90,7 +90,7 @@ public class MainActivity extends Activity {
 
 
 
-    public static String GET(String url) {
+    public static String getFromURL(String url) {
         InputStream inputStream = null;
         String result = "";
         try {
@@ -150,7 +150,7 @@ public class MainActivity extends Activity {
         @Override
         protected String doInBackground(String... urls) {
 
-            return GET(urls[0]);
+            return getFromURL(urls[0]);
         }
 
         // onPostExecute displays the results of the AsyncTask.
@@ -175,82 +175,49 @@ public class MainActivity extends Activity {
                     }
                     week[ct++] = jsonArray;
                 }
-               if(flg==0){
-                   Intent intent=new Intent(MainActivity.this,DiningHallOne.class);
-                   Calendar rightNow = Calendar.getInstance();
-                   if (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
-                       intent.putExtra("array", week[4].toString());
-                       startActivity(intent);
 
-                   }
-                   else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
-                       intent.putExtra("array", week[5].toString());
-                       startActivity(intent);
-
-                   }
-                   else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
-                       intent.putExtra("array", week[6].toString());
-                       startActivity(intent);
-                   }
-                   else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
-
-                       intent.putExtra("array", week[0].toString());
-                       startActivity(intent);
-                   }
-                   else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
-                       intent.putExtra("array", week[1].toString());
-                       startActivity(intent);
-
-                   }
-                   else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
-                       intent.putExtra("array", week[2].toString());
-                       startActivity(intent);
-                   }
-                   else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
-                   {
-                       intent.putExtra("array", week[3].toString());
-                       startActivity(intent);
-                   }
-
-
-               }
-                if(flg==1){
-                    Intent intent=new Intent(MainActivity.this,DiningHallTwo.class);
-                    Calendar rightNow = Calendar.getInstance();
-                    if (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
-                        intent.putExtra("array", week[4].toString());
-                        startActivity(intent);
-
-                    }
-                    else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
-                        intent.putExtra("array", week[5].toString());
-                        startActivity(intent);
-
-                    }
-                    else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
-                        intent.putExtra("array", week[6].toString());
-                        startActivity(intent);
-                    }
-                    else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
-
-                        intent.putExtra("array", week[0].toString());
-                        startActivity(intent);
-                    }
-                    else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
-                        intent.putExtra("array", week[1].toString());
-                        startActivity(intent);
-
-                    }
-                    else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
-                        intent.putExtra("array", week[2].toString());
-                        startActivity(intent);
-                    }
-                    else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
-                    {
-                        intent.putExtra("array", week[3].toString());
-                        startActivity(intent);
-                    }
+                Intent intent = new Intent();
+                if(flg==0) {
+                    intent = new Intent(MainActivity.this, DiningHallOne.class);
                 }
+                else if(flg==1) {
+                    intent = new Intent(MainActivity.this, DiningHallTwo.class);
+                }
+
+
+                Calendar rightNow = Calendar.getInstance();
+                if (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
+                    intent.putExtra("array", week[4].toString());
+                    startActivity(intent);
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+                    intent.putExtra("array", week[5].toString());
+                    startActivity(intent);
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
+                    intent.putExtra("array", week[6].toString());
+                    startActivity(intent);
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
+
+                    intent.putExtra("array", week[0].toString());
+                    startActivity(intent);
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
+                    intent.putExtra("array", week[1].toString());
+                    startActivity(intent);
+
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
+                    intent.putExtra("array", week[2].toString());
+                    startActivity(intent);
+                }
+                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
+                {
+                    intent.putExtra("array", week[3].toString());
+                    startActivity(intent);
+                }
+
 
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
