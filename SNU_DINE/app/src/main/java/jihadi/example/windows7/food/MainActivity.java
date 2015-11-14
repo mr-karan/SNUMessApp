@@ -53,12 +53,12 @@ public class MainActivity extends Activity {
                 flg=0;
                 if (isConnected()) {
 
-                    new HttpAsyncTask().execute("https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/MessJSON/DH1.json");
+                    new HttpAsyncTask().execute("https://cdn.rawgit.com/mr-karan/SNUMessApp/master/MessJSON/DH1.json");
 
 
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "You are not connected to internet .Please try again !!",
+                    Toast.makeText(getApplicationContext(), getString(R.string.NoInternet),
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -69,10 +69,10 @@ public class MainActivity extends Activity {
                 flg=1;
                 if (isConnected()) {
 
-                    new HttpAsyncTask().execute("https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/MessJSON/DH2.json");
+                    new HttpAsyncTask().execute("https://cdn.rawgit.com/mr-karan/SNUMessApp/master/MessJSON/DH2.json");
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "You are not connected to internet .Please try again !!",
+                    Toast.makeText(getApplicationContext(), getString(R.string.NoInternet),
                             Toast.LENGTH_LONG).show();
                 }
             }
