@@ -11,12 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="About Us:"
+        android:text="About Us"
         android:id="@+id/abt"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="43dp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/jehadi"
-        android:layout_toEndOf="@+id/jehadi" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,9 +23,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Kaustuv Deolal "
         android:id="@+id/vut"
-        android:layout_marginTop="71dp"
-        android:layout_below="@+id/abt"
-        android:layout_alignParentLeft="true"
+        android:layout_above="@+id/jehadi"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -35,9 +32,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Karan Sharma"
         android:id="@+id/jehadi"
-        android:layout_marginTop="78dp"
-        android:layout_below="@+id/vut"
-        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -47,15 +42,13 @@
         android:text="Dhiraj Balakrishnan"
         android:id="@+id/dhiru"
         android:layout_below="@+id/jehadi"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="72dp" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Link to kaustuv&apos;s blog"
+        android:text="Blog"
         android:id="@+id/link1"
         android:layout_alignTop="@+id/vut"
         android:layout_alignParentRight="true"
@@ -65,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="Website"
         android:id="@+id/link2"
         android:layout_alignTop="@+id/jehadi"
         android:layout_alignParentRight="true"
@@ -75,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="Facebook"
         android:id="@+id/t3"
         android:layout_alignTop="@+id/dhiru"
         android:layout_alignParentEnd="true" />
