@@ -25,22 +25,16 @@
         android:layout_height="wrap_content"
         android:text="DH1"
         android:id="@+id/dh1"
-        android:layout_marginTop="93dp"
-        android:layout_below="@+id/menu"
-        android:layout_alignStart="@+id/about"
-        android:layout_alignEnd="@+id/about" />
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/about" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DH2"
         android:id="@+id/dh2"
-        android:layout_marginTop="70dp"
-        android:layout_below="@+id/dh1"
-        android:layout_alignRight="@+id/dh1"
-        android:layout_alignEnd="@+id/dh1"
-        android:layout_alignLeft="@+id/dh1"
-        android:layout_alignStart="@+id/dh1" />
+        android:layout_alignTop="@+id/dh1"
+        android:layout_toEndOf="@+id/about" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
