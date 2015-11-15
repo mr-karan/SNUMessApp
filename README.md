@@ -1,12 +1,17 @@
-# SNUMessApp
-Android App for SNU Weekly Mess Menu
+# Shiv Nadar University Mess App
+Android App for staying up to date with SNU's Weekly Mess Menu
+
+
 <a href="https://play.google.com/store/apps/details?id=karan.jihadi.windows7.food">
   <img alt="Get it on Google Play"
        src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
 </a>
 
-![Main Menu](https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/screenshots/main.png)
+## Screenshots
+![Main Menu](screenshots/main.png)
 
-![DH 2](https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/screenshots/DH2.png)
+![DH 2](screenshots/DH2.png)
 
-![DH 1](https://raw.githubusercontent.com/mr-karan/SNUMessApp/master/screenshots/DH1.png)
+![DH 1](screenshots/DH1.png)
+
+![About](screenshots/about.png)
