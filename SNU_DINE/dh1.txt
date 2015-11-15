@@ -1,0 +1,78 @@
+package com.example.windows7.food;
+
+import android.app.Activity;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.Calendar;
+
+
+public class DiningHallOne extends Activity {
+
+    private TextView t;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_dining_hall_one);
+        Bundle b = getIntent().getExtras();
+        String[] array=b.getString("array").split(",");
+        String brr[]=new String[3];
+        String lrr[]=new String[8];
+        String drr[]=new String[8];
+        brr[0]=array[2].replaceAll("[^a-zA-Z]","");
+        brr[1]=array[3].replaceAll("[^a-zA-Z]","");
+        brr[2]=array[4].replaceAll("[^a-zA-Z]","");
+        lrr[0]=array[5].replaceAll("[^a-zA-Z]","");
+        lrr[1]=array[6].replaceAll("[^a-zA-Z]","");
+        lrr[2]=array[7].replaceAll("[^a-zA-Z]","");
+        lrr[3]=array[8].replaceAll("[^a-zA-Z]","");
+        lrr[4]=array[9].replaceAll("[^a-zA-Z]","");
+        lrr[5]=array[10].replaceAll("[^a-zA-Z]","");
+        lrr[6]=array[11].replaceAll("[^a-zA-Z]","");
+        lrr[7]=array[12].replaceAll("[^a-zA-Z]","");
+        drr[0]=array[13].replaceAll("[^a-zA-Z]","");
+        drr[1]=array[14].replaceAll("[^a-zA-Z]","");
+        drr[2]=array[15].replaceAll("[^a-zA-Z]","");
+        drr[3]=array[16].replaceAll("[^a-zA-Z]","");
+        drr[4]=array[17].replaceAll("[^a-zA-Z]","");
+        drr[5]=array[18].replaceAll("[^a-zA-Z]","");
+        drr[6]=array[19].replaceAll("[^a-zA-Z]","");
+        drr[7]=array[20].replaceAll("[^a-zA-Z]","");
+        for(String arr:brr){
+            System.out.println(arr);
+        }
+        for(String arr:lrr){
+            System.out.println(arr);
+        }
+        for(String arr:drr){
+            System.out.println(arr);
+        }
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_dining_hall_one, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
