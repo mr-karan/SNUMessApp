@@ -9,47 +9,29 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import jihadi.example.windows7.food.fragments.Breakfast;
-import jihadi.example.windows7.food.fragments.Dinner;
-import jihadi.example.windows7.food.fragments.Lunch;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import jihadi.example.windows7.food.fragments.MenuFragment;
 
-public class DiningHallOne extends AppCompatActivity {
+
+public class MenuActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    public String [] brr, lrr, drr;
+    public ArrayList<String> breakfast = new ArrayList<>();
+    public ArrayList<String> lunch = new ArrayList<>();
+    public ArrayList<String> dinner = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dining_hall_one);
+        setContentView(R.layout.activity_menu);
         Bundle b = getIntent().getExtras();
-        String[] array=b.getString("array").split(",");
-        brr=new String[3];
-        lrr=new String[8];
-        drr=new String[8];
-        brr[0]=array[2].replaceAll("[^a-zA-Z]"," ");
-        brr[1]=array[3].replaceAll("[^a-zA-Z]"," ");
-        brr[2]=array[4].replaceAll("[^a-zA-Z]"," ");
-        lrr[0]=array[5].replaceAll("[^a-zA-Z]"," ");
-        lrr[1]=array[6].replaceAll("[^a-zA-Z]"," ");
-        lrr[2]=array[7].replaceAll("[^a-zA-Z]"," ");
-        lrr[3]=array[8].replaceAll("[^a-zA-Z]"," ");
-        lrr[4]=array[9].replaceAll("[^a-zA-Z]"," ");
-        lrr[5]=array[10].replaceAll("[^a-zA-Z]"," ");
-        lrr[6]=array[11].replaceAll("[^a-zA-Z]"," ");
-        lrr[7]=array[12].replaceAll("[^a-zA-Z]"," ");
-        drr[0]=array[13].replaceAll("[^a-zA-Z]"," ");
-        drr[1]=array[14].replaceAll("[^a-zA-Z]"," ");
-        drr[2]=array[15].replaceAll("[^a-zA-Z]"," ");
-        drr[3]=array[16].replaceAll("[^a-zA-Z]"," ");
-        drr[4]=array[17].replaceAll("[^a-zA-Z]"," ");
-        drr[5]=array[18].replaceAll("[^a-zA-Z]"," ");
-        drr[6]=array[19].replaceAll("[^a-zA-Z]"," ");
-        drr[7]=array[20].replaceAll("[^a-zA-Z]"," ");
+
+        breakfast = b.getStringArrayList("breakfast");
+        lunch     = b.getStringArrayList("lunch");
+        dinner    = b.getStringArrayList("dinner");
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -63,19 +45,28 @@ public class DiningHallOne extends AppCompatActivity {
     }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        Bundle bundle = new Bundle();
-        bundle.putStringArray("brr",brr);
-        bundle.putStringArray("lrr",lrr);
-        bundle.putStringArray("drr",drr);
-        Breakfast bf = new Breakfast();
-        Lunch lu=new Lunch();
-        Dinner di=new Dinner();
-        adapter.addFragment(bf, "Breakfast");
-        bf.setArguments(bundle);
-        adapter.addFragment(lu, "Lunch");
-        lu.setArguments(bundle);
-        adapter.addFragment(di, "Dinner");
-        di.setArguments(bundle);
+
+        Bundle bundleBreakfast = new Bundle();
+        Bundle bundleLunch = new Bundle();
+        Bundle bundleDinner = new Bundle();
+
+        bundleBreakfast.putStringArrayList("items", breakfast);
+        bundleLunch.putStringArrayList("items", lunch);
+        bundleDinner.putStringArrayList("items", dinner);
+
+        MenuFragment mfBreakfast = new MenuFragment();
+        MenuFragment mfLunch = new MenuFragment();
+        MenuFragment mfDinner = new MenuFragment();
+
+        adapter.addFragment(mfBreakfast, "Breakfast");
+        mfBreakfast.setArguments(bundleBreakfast);
+
+        adapter.addFragment(mfLunch, "Lunch");
+        mfLunch.setArguments(bundleLunch);
+
+        adapter.addFragment(mfDinner, "Dinner");
+        mfDinner.setArguments(bundleDinner);
+
         viewPager.setAdapter(adapter);
     }
 
