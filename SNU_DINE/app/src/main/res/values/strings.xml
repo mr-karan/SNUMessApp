@@ -4,8 +4,7 @@
     <string name="app_name">Food</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_dining_hall_one">Dining Hall One</string>
-    <string name="title_activity_dining_hall_two">Dining Hall Two</string>
+    <string name="title_activity_menu">Dining Hall Menu</string>
     <string name="NoInternet">You are not connected to the internet. Please try again!!</string>
 
 

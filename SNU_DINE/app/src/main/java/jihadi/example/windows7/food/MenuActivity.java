@@ -9,10 +9,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import jihadi.example.windows7.food.fragments.MenuFragment;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import jihadi.example.windows7.food.fragments.MenuFragment;
 
 
 public class MenuActivity extends AppCompatActivity {

@@ -11,36 +11,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
 
 public class MainActivity extends Activity {
 
     private static final String TAG = "SNU-MESS-APP";
     public  Object week[] = new Object[7];
-    private ProgressBar mProgress;
-    enum days {Mon, Tue, Wed, Thu, Fri, Sat, Sun}
 
 
     Button dh1, dh2;//This dh1 and dh2 acts as a refresh button.

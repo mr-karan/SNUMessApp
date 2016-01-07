@@ -21,7 +21,7 @@
         </activity>
         <activity
             android:name="jihadi.example.windows7.food.MenuActivity"
-            android:label="@string/title_activity_dining_hall_one" >
+            android:label="@string/title_activity_menu" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="jihadi.example.windows7.food.MainActivity" />
