@@ -28,6 +28,10 @@ public class info extends ActionBarActivity {
         String linkText3 = "<a href='http://www.facebook.com/profile.php?id=100002235304169'>Facebook</a>";
         t3.setText(Html.fromHtml(linkText3));
         t3.setMovementMethod(LinkMovementMethod.getInstance());
+        TextView t4 = (TextView) findViewById(R.id.t4);
+        String linkText4 = "<a href='http://sheikharaf.me'>Website</a>";
+        t4.setText(Html.fromHtml(linkText4));
+        t4.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
 
