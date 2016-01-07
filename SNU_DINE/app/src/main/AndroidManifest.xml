@@ -20,15 +20,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="jihadi.example.windows7.food.DiningHallOne"
+            android:name="jihadi.example.windows7.food.MenuActivity"
             android:label="@string/title_activity_dining_hall_one" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="jihadi.example.windows7.food.MainActivity" />
-        </activity>
-        <activity
-            android:name="jihadi.example.windows7.food.DiningHallTwo"
-            android:label="@string/title_activity_dining_hall_two" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="jihadi.example.windows7.food.MainActivity" />

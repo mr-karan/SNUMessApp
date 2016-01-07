@@ -6,13 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import jihadi.example.windows7.food.R;
 
 
-public class Breakfast extends android.support.v4.app.Fragment {
-    public static TextView title,item1,item2,item3;
+public class MenuFragment extends android.support.v4.app.Fragment {
+    public static TextView title, tvResult;
 
-    public Breakfast(){
+    public MenuFragment(){
 
     }
 
@@ -26,16 +28,18 @@ public class Breakfast extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_breakfast, container, false);
+        View view = inflater.inflate(R.layout.fragment_menu, container, false);
         Bundle b = getArguments();
         title = (TextView)view.findViewById(R.id.title);
-        item1 = (TextView)view.findViewById(R.id.item1);
-        item2 = (TextView)view.findViewById(R.id.item2);
-        item3 = (TextView)view.findViewById(R.id.item3);
-        String [] myString = b.getStringArray("brr");
-        item1.setText(myString[0]);
-        item2.setText(myString[1]);
-        item3.setText(myString[2]   );
+        tvResult = (TextView)view.findViewById(R.id.tvResult);
+
+        ArrayList<String> items = b.getStringArrayList("items");
+
+        String result = "";
+
+        for(String item: items)   result += (item + "\n\n");
+
+        tvResult.setText(result);
         return view;
     }
 
