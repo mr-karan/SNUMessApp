@@ -25,7 +25,6 @@ import java.util.ArrayList;
 public class MainActivity extends Activity {
 
     private static final String TAG = "SNU-MESS-APP";
-    public  Object week[] = new Object[7];
 
 
     Button dh1, dh2;//This dh1 and dh2 acts as a refresh button.
