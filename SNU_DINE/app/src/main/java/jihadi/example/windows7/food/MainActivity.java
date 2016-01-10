@@ -142,7 +142,7 @@ public class MainActivity extends Activity {
 
                 return true;
 
-            } catch (IOException e) {
+            } catch (IOException | IndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
 
