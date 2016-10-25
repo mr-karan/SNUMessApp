@@ -26,7 +26,8 @@
         android:text="DH1"
         android:id="@+id/dh1"
         android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/about" />
+        android:layout_toStartOf="@+id/about"
+        android:layout_toLeftOf="@+id/about" />
 
     <Button
         android:layout_width="wrap_content"
@@ -34,7 +35,8 @@
         android:text="DH2"
         android:id="@+id/dh2"
         android:layout_alignTop="@+id/dh1"
-        android:layout_toEndOf="@+id/about" />
+        android:layout_toEndOf="@+id/about"
+        android:layout_toRightOf="@+id/about"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"

@@ -11,37 +11,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Calendar;
-import java.util.Iterator;
+import java.util.ArrayList;
 
 import karan.jihadi.windows7.food.Feedback;
 
 public class MainActivity extends Activity {
 
     private static final String TAG = "SNU-MESS-APP";
-    public  Object week[] = new Object[7];
-    private ProgressBar mProgress;
-    enum days {Mon, Tue, Wed, Thu, Fri, Sat, Sun}
 
 
     Button dh1, dh2;//This dh1 and dh2 acts as a refresh button.
@@ -73,7 +58,7 @@ public class MainActivity extends Activity {
                 flg=0;
                 if (isConnected()) {
 
-                    new HttpAsyncTask().execute("https://cdn.rawgit.com/mr-karan/SNUMessApp/master/MessJSON/DH1.json");
+                    new fetchMenu().execute("dh1");
 
 
 
@@ -89,7 +74,7 @@ public class MainActivity extends Activity {
                 flg=1;
                 if (isConnected()) {
 
-                    new HttpAsyncTask().execute("https://cdn.rawgit.com/mr-karan/SNUMessApp/master/MessJSON/DH2.json");
+                    new fetchMenu().execute("dh2");
 
                 } else {
                     Toast.makeText(getApplicationContext(), getString(R.string.NoInternet),
@@ -124,42 +109,6 @@ public class MainActivity extends Activity {
         }
     }
 
-    public static String getFromURL(String sUrl) {
-        URL url = null;
-        String result = "";
-
-        try {
-            url = new URL(sUrl);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        try {
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            try {
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                result = convertInputStreamToString(in);
-            }
-            finally {
-                urlConnection.disconnect();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while ((line = bufferedReader.readLine()) != null)
-            result += line;
-
-        inputStream.close();
-        return result;
-
-    }
-
     public boolean isConnected() {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Activity.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -169,91 +118,88 @@ public class MainActivity extends Activity {
             return false;
     }
 
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+    private class fetchMenu extends AsyncTask<String, Void, Boolean> {
 
         ProgressDialog dialog;
+        ArrayList<String> breakfast = new ArrayList<>();
+        ArrayList<String> lunch = new ArrayList<>();
+        ArrayList<String> dinner = new ArrayList<>();
         protected void onPreExecute(){
             // create dialog here
             dialog= new ProgressDialog (MainActivity.this);
-            dialog.setMessage("Receiving");
+            dialog.setMessage("Fetching");
+            dialog.setCanceledOnTouchOutside(false);
             dialog.show();
         }
         @Override
-        protected String doInBackground(String... urls) {
+        protected Boolean doInBackground(String... mess) {
 
-            return getFromURL(urls[0]);
-        }
-
-        // onPostExecute displays the results of the AsyncTask.
-        @Override
-        protected void onPostExecute(String result) {
-
-            Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
-            dialog.dismiss();
             try {
-                JSONObject json = new JSONObject(result);
-                int ct = 0;
-                // System.out.println((json.getJSONArray("Mon")).toString());
-                for (days day : days.values()) {
-                    JSONObject j = json.getJSONObject(String.valueOf(day));
-                    Iterator x = j.keys();
+                Document page = Jsoup.connect("http://messmenu.snu.in/messMenu.php")
+                        .get();
 
-                    JSONArray jsonArray = new JSONArray();
+                Element menu;
+                if(mess[0].equals("dh1"))   menu = page.getElementsByTag("tbody").get(0);
+                else                        menu = page.getElementsByTag("tbody").get(1);
 
-                    while (x.hasNext()) {
-                        String key = (String) x.next();
-                        jsonArray.put(j.get(key));
-                    }
-                    week[ct++] = jsonArray;
-                }
+                Elements breakfast_items = menu.getElementsByTag("td").get(1).children();
+                Elements lunch_items = menu.getElementsByTag("td").get(2).children();
+                Elements dinner_items = menu.getElementsByTag("td").get(3).children();
 
-                Intent intent = new Intent();
-                if(flg==0) {
-                    intent = new Intent(MainActivity.this, DiningHallOne.class);
-                }
-                else if(flg==1) {
-                    intent = new Intent(MainActivity.this, DiningHallTwo.class);
-                }
+                for(Element item: breakfast_items)  breakfast.add(item.text());
+                for(Element item: lunch_items)      lunch.add(item.text());
+                for(Element item: dinner_items)     dinner.add(item.text());
 
+                return true;
 
-                Calendar rightNow = Calendar.getInstance();
-                if (rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY){
-                    intent.putExtra("array", week[4].toString());
-                    startActivity(intent);
-                }
-                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
-                    intent.putExtra("array", week[5].toString());
-                    startActivity(intent);
-                }
-                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY){
-                    intent.putExtra("array", week[6].toString());
-                    startActivity(intent);
-                }
-                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY){
-
-                    intent.putExtra("array", week[0].toString());
-                    startActivity(intent);
-                }
-                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY){
-                    intent.putExtra("array", week[1].toString());
-                    startActivity(intent);
-
-                }
-                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY){
-                    intent.putExtra("array", week[2].toString());
-                    startActivity(intent);
-                }
-                else if(rightNow.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY)
-                {
-                    intent.putExtra("array", week[3].toString());
-                    startActivity(intent);
-                }
-
-
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
+            } catch (IOException | IndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
+
+            return false;
         }
+
+        // onPostExecute send result to the respective activity.
+        @Override
+        protected void onPostExecute(Boolean result) {
+
+            dialog.dismiss();
+
+            if(result) {
+                Intent i = new Intent(MainActivity.this, MenuActivity.class);
+                i.putExtra("breakfast", breakfast);
+                i.putExtra("lunch", lunch);
+                i.putExtra("dinner", dinner);
+                startActivity(i);
+            }
+            else {
+                Toast.makeText(MainActivity.this, "Can't fetch menu. Try again later.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    //Just to confirm exitting the app.
+    @Override
+    public void onBackPressed()
+    {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        moveTaskToBack(true);
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        dialog.dismiss();
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to exit?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
     }
 }

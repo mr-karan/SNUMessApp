@@ -6,10 +6,10 @@ android {
 
     defaultConfig {
         applicationId "karan.jihadi.windows7.food"
-        minSdkVersion 21
-        targetSdkVersion 21
-        versionCode 2
-        versionName "1.0"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 3
+        versionName "3.0"
     }
     buildTypes {
         release {
@@ -20,7 +20,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:design:22.2.1'
+    compile files('libs/jsoup-1.8.3.jar')
 }
