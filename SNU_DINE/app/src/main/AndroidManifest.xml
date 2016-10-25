@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jihadi.example.windows7.food" >
+    package="jihadi.example.windows7.food">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,10 +9,10 @@
         android:allowBackup="true"
         android:icon="@drawable/mess_icon"
         android:label="Menu"
-        android:theme="@style/MyMaterialTheme" >
+        android:theme="@style/MyMaterialTheme">
         <activity
-            android:name="jihadi.example.windows7.food.MainActivity"
-            android:label="@string/app_name" >
+            android:name=".MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,23 +20,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="jihadi.example.windows7.food.DiningHallOne"
-            android:label="@string/title_activity_dining_hall_one" >
+            android:name=".DiningHallOne"
+            android:label="@string/title_activity_dining_hall_one">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="jihadi.example.windows7.food.MainActivity" />
         </activity>
         <activity
-            android:name="jihadi.example.windows7.food.DiningHallTwo"
-            android:label="@string/title_activity_dining_hall_two" >
+            android:name=".DiningHallTwo"
+            android:label="@string/title_activity_dining_hall_two">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="jihadi.example.windows7.food.MainActivity" />
         </activity>
         <activity
-            android:name="jihadi.example.windows7.food.info"
-            android:label="info" >
-        </activity>
+            android:name=".info"
+            android:label="info"></activity>
+        <activity android:name="karan.jihadi.windows7.food.Feedback"></activity>
     </application>
 
 </manifest>

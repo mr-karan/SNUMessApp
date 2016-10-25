@@ -34,6 +34,8 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.Iterator;
 
+import karan.jihadi.windows7.food.Feedback;
+
 public class MainActivity extends Activity {
 
     private static final String TAG = "SNU-MESS-APP";
@@ -44,6 +46,7 @@ public class MainActivity extends Activity {
 
     Button dh1, dh2;//This dh1 and dh2 acts as a refresh button.
     Button about;
+    Button feedback;
     int flg=-1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,7 @@ public class MainActivity extends Activity {
         dh1 = (Button) findViewById(R.id.dh1);
         dh2 = (Button) findViewById(R.id.dh2);
         about=(Button)findViewById(R.id.about);
+        feedback=(Button)findViewById(R.id.feedback);
         dh1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +101,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent in= new Intent(MainActivity.this,info.class);
+                startActivity(in);
+            }
+        });
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in= new Intent(MainActivity.this,Feedback.class);
                 startActivity(in);
             }
         });
