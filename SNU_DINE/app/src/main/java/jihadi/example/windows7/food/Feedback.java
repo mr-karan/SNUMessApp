@@ -1,4 +1,4 @@
-package karan.jihadi.windows7.food;
+package jihadi.example.windows7.food;
 
 import android.app.Activity;
 import android.content.Intent;

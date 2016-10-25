@@ -1,7 +1,7 @@
 package jihadi.example.windows7.food;
 
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.Menu;
@@ -32,6 +32,10 @@ public class info extends ActionBarActivity {
         String linkText4 = "<a href='http://sheikharaf.me'>Website</a>";
         t4.setText(Html.fromHtml(linkText4));
         t4.setMovementMethod(LinkMovementMethod.getInstance());
+        TextView t5 = (TextView) findViewById(R.id.t5);
+        String linkText5 = "<a href='https://www.facebook.com/ManjulSinghSachan'>Facebook</a>";
+        t5.setText(Html.fromHtml(linkText5));
+        t5.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
 
