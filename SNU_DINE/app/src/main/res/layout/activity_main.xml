@@ -11,16 +11,6 @@
         android:id="@+id/view">
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="SNU Mess App"
-        android:id="@+id/menu"
-        android:layout_below="@+id/view"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,34 +49,45 @@
         android:id="@+id/special" />
 
     <Button
+        android:text="Contact Us"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/contact"
+        android:layout_below="@+id/feedback"
+        android:layout_alignLeft="@+id/about"
+        android:layout_alignStart="@+id/about"
+        android:layout_marginTop="33dp" />
+
+    <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Developers"
         android:id="@+id/about"
-        android:layout_below="@+id/feedback"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="127dp" />
+        android:layout_marginBottom="14dp" />
 
-    <Button
-        android:text="Contact Us"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/about"
-        android:layout_alignEnd="@+id/about"
-        android:layout_marginBottom="49dp"
-        android:id="@+id/contact" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SNU Mess App"
+        android:id="@+id/menu"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/view"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/messlogo"
-        android:id="@+id/imageView"
-        android:layout_marginBottom="26dp"
-        android:layout_above="@+id/about"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:id="@+id/imageView3"
+        android:scaleType="fitCenter"
+        android:layout_above="@+id/dh1"
+        android:layout_alignLeft="@+id/menu"
+        android:layout_alignStart="@+id/menu"
+        android:layout_marginBottom="46dp" />
 
 
 </RelativeLayout>
