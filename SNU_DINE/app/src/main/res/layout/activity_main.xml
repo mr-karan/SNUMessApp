@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"  tools:context=".MainActivity"
     android:id="@+id/one">
@@ -39,25 +40,54 @@
         android:layout_toRightOf="@+id/about"/>
 
     <Button
+        android:text="Feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="47dp"
+        android:id="@+id/feedback"
+        android:layout_below="@+id/dh1"
+        android:layout_alignLeft="@+id/dh1"
+        android:layout_alignStart="@+id/dh1" />
+
+    <Button
+        android:text="Special Items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/feedback"
+        android:layout_alignRight="@+id/dh2"
+        android:layout_alignEnd="@+id/dh2"
+        android:id="@+id/special" />
+
+    <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Developers"
         android:id="@+id/about"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/feedback"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="127dp" />
 
     <Button
-        android:text="Feedback"
+        android:text="Contact Us"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:id="@+id/feedback"
-        android:layout_below="@+id/dh2"
-        android:layout_toStartOf="@+id/dh2" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/about"
+        android:layout_alignEnd="@+id/about"
+        android:layout_marginBottom="49dp"
+        android:id="@+id/contact" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/messlogo"
+        android:id="@+id/imageView"
+        android:layout_marginBottom="26dp"
+        android:layout_above="@+id/about"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
 
-<!--What should I be concentrating more in ?? Design or the working ??
-First look at the working of the program, then you can work on design of the application-->
