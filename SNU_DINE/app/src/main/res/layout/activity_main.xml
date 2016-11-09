@@ -84,10 +84,10 @@
         app:srcCompat="@drawable/messlogo"
         android:id="@+id/imageView3"
         android:scaleType="fitCenter"
+        android:layout_marginBottom="59dp"
         android:layout_above="@+id/dh1"
         android:layout_alignLeft="@+id/menu"
-        android:layout_alignStart="@+id/menu"
-        android:layout_marginBottom="46dp" />
+        android:layout_alignStart="@+id/menu" />
 
 
 </RelativeLayout>

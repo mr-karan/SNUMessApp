@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.firebase.messaging.RemoteMessage;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +38,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.Map;
+
 import static android.R.id.message;
 import static jihadi.example.windows7.food.R.attr.icon;
 public class MainActivity extends Activity {
@@ -132,6 +136,30 @@ public class MainActivity extends Activity {
                 startActivity(in);
             }
         });
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent.hasExtra("click_action")) {
+            try {
+                ClickActionHelper.startActivity(intent.getStringExtra("click_action"), intent.getExtras(), this);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        Map<String, String> data = remoteMessage.getData();
+        if (data.containsKey("click_action")) {
+            try {
+                ClickActionHelper.startActivity(data.get("click_action"), null, this);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
