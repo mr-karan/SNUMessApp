@@ -24,8 +24,7 @@
         android:text="Kaustuv Deolal "
         android:id="@+id/vut"
         android:layout_above="@+id/jehadi"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -34,8 +33,7 @@
         android:text="Karan Sharma"
         android:id="@+id/jehadi"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,11 +49,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Sheikh Araf"
-        android:id="@+id/araf"
-        android:layout_below="@+id/dhiru"
+        android:text="Manjul Singh Sachan"
+        android:id="@+id/ms"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/t4" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,8 +91,28 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Website"
         android:id="@+id/t4"
-        android:layout_alignTop="@+id/araf"
+        android:layout_below="@+id/t3"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sheikh Araf"
+        android:id="@+id/araf"
+        android:layout_below="@+id/dhiru"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ms"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/t5"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 </RelativeLayout>

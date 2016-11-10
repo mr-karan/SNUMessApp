@@ -1,7 +1,9 @@
 package jihadi.example.windows7.food;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,27 +13,48 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.firebase.messaging.RemoteMessage;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
+import java.util.Map;
 
-import karan.jihadi.windows7.food.Feedback;
-
+import static android.R.id.message;
+import static jihadi.example.windows7.food.R.attr.icon;
 public class MainActivity extends Activity {
 
     private static final String TAG = "SNU-MESS-APP";
+    public  Object week[] = new Object[7];
+    private ProgressBar mProgress;
+    enum days {Mon, Tue, Wed, Thu, Fri, Sat, Sun}
 
 
     Button dh1, dh2;//This dh1 and dh2 acts as a refresh button.
     Button about;
     Button feedback;
+    Button special;
+    Button contact;
     int flg=-1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +75,8 @@ public class MainActivity extends Activity {
         dh2 = (Button) findViewById(R.id.dh2);
         about=(Button)findViewById(R.id.about);
         feedback=(Button)findViewById(R.id.feedback);
+        special=(Button)findViewById(R.id.special);
+        contact=(Button)findViewById(R.id.contact);
         dh1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +122,44 @@ public class MainActivity extends Activity {
             }
         });
 
+        special.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in= new Intent(MainActivity.this,SpecialMenu.class);
+                startActivity(in);
+            }
+        });
+        contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in= new Intent(MainActivity.this,ContactUs.class);
+                startActivity(in);
+            }
+        });
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent.hasExtra("click_action")) {
+            try {
+                ClickActionHelper.startActivity(intent.getStringExtra("click_action"), intent.getExtras(), this);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        Map<String, String> data = remoteMessage.getData();
+        if (data.containsKey("click_action")) {
+            try {
+                ClickActionHelper.startActivity(data.get("click_action"), null, this);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -155,14 +218,11 @@ public class MainActivity extends Activity {
             } catch (IOException | IndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
-
-            return false;
-        }
-
+                return false;
+            }
         // onPostExecute send result to the respective activity.
         @Override
         protected void onPostExecute(Boolean result) {
-
             dialog.dismiss();
 
             if(result) {
@@ -174,6 +234,8 @@ public class MainActivity extends Activity {
             }
             else {
                 Toast.makeText(MainActivity.this, "Can't fetch menu. Try again later.", Toast.LENGTH_SHORT).show();
+
+
             }
         }
     }
@@ -202,4 +264,7 @@ public class MainActivity extends Activity {
         builder.setMessage("Are you sure you want to exit?").setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
     }
+
 }
+
+
